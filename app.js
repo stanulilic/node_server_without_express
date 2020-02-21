@@ -13,6 +13,13 @@ const server = http.createServer((req, res) => {
       res.write(html);
       res.end();
     });
+  } else if (req.url === '/assets/main.css') {
+    fs.readFile('./assets/main.css', (error, css) => {
+      if (error) throw error;
+      res.writeHead('200', { 'Content-Type': 'text/css' });
+      res.write(css);
+      res.end();
+    });
   } else {
     fs.readFile('./templates/404.html', (error, html) => {
       if (error) throw error;
